@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un Mensaje Especial para Ti</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7e0e9;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .mensaje {
+            font-size: 2em;
+            color: #d10077;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .pregunta {
+            font-size: 1.5em;
+            color: #5a0038;
+            margin-bottom: 40px;
+        }
+        .botones {
+            display: flex;
+            gap: 20px;
+        }
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        #btn-si {
+            background-color: #4CAF50;
+            color: white;
+            width: 150px; 
+            height: 50px;
+        }
+        #btn-no {
+            background-color: #f44336;
+            color: white;
+            width: 150px;
+            height: 50px;
+        }
+        #respuesta-final {
+            margin-top: 40px;
+            font-size: 2em;
+            color: #008000;
+            display: none;
+        }
+        #gato-enojado {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .gato-contenido {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: black;
+            font-size: 1.2em;
+        }
+        .gato-emoji {
+            font-size: 4em; /* Hace el emoji grande y visible */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mensaje">
+        ¡Buenos días Gabisita bonita, te amo! ❤️
+    </div>
+    <div class="pregunta">
+        ¿Tú me amas?
+    </div>
+    <div class="botones">
+        <button id="btn-si" class="btn" onclick="respuestaSi()">SÍ</button>
+        <button id="btn-no" class="btn" onclick="agrandarSi()">NO</button>
+    </div>
+    <div id="respuesta-final">
+        ¡Entonces ven a abrazarme vaga! 🥰
+    </div>
+
+    <div id="gato-enojado">
+        <div class="gato-contenido">
+            <p class="gato-emoji">😾</p>
+            <p style="font-weight: bold; color: #f44336;">¿En serio seleccionaste NO? 🤨</p>
+            <p style="color: #000000; margin-top: -10px;">¡Te robaré a KODA por poner que no!</p>
+            <p>Pues esa opción no es válida. Intenta de nuevo. 😉</p>
+        </div>
+    </div>
+
+    <script>
+        const btnSi = document.getElementById('btn-si');
+        const btnNo = document.getElementById('btn-no');
+        const respuestaFinal = document.getElementById('respuesta-final');
+        const preguntaText = document.querySelector('.pregunta');
+        const gatoPopup = document.getElementById('gato-enojado');
+        let sizeIncrease = 0;
+
+        function agrandarSi() {
+            // Muestra el pop-up del gato
+            gatoPopup.style.display = 'flex';
+            
+            // Oculta el pop-up automáticamente después de 3.5 segundos
+            setTimeout(() => {
+                gatoPopup.style.display = 'none';
+            }, 3500);
+
+            // Código para hacer crecer el botón "SÍ"
+            sizeIncrease += 30;
+            const newSize = 150 + sizeIncrease;
+            btnSi.style.width = `${newSize}px`;
+            btnSi.style.height = `${newSize * 0.33}px`;
+            btnSi.style.fontSize = `${1.2 + sizeIncrease * 0.02}em`;
+            btnNo.style.opacity = 0.5;
+        }
+        
+        function respuestaSi() {
+            document.querySelector('.botones').style.display = 'none';
+            respuestaFinal.style.display = 'block';
+            preguntaText.textContent = ''; 
+        }
+    </script>
+</body>
+</html>
